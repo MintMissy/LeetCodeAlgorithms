@@ -29,3 +29,5 @@ function quicksort(arr) {
 // console.time();
 console.log(quicksort(arr));
 // console.timeEnd();
+
+// https://www.youtube.com/watch?v=g2YWa9EGNdk
