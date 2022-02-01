@@ -12,15 +12,28 @@ function getFactors(number) {
   }
 }
 
-function gcd(numberA, numberB) {
-  const aFactors = getFactors(numberA);
-  const bFactors = getFactors(numberB);
-
-  const length =
-    aFactors.length > bFactors.length ? aFactors.length : bFactors.length;
-
-  const gcdArray = [];
-  for (let i = 0; i < length; i++) {}
+function recursiveGcd(numberA, numberB) {
+  if (numberB) {
+    return recursiveGcd(numberB, numberA % numberB);
+  } else {
+    return Math.abs(numberA);
+  }
 }
 
-console.log(gcd(6, 12));
+function gcd(numberA, numberB) {
+  if (numberA < numberB) {
+    [numberA, numberB] = [numberB, numberA];
+  }
+
+  while (true) {
+    numberA %= numberB;
+    if (numberA === 0) {
+      return numberB;
+    }
+
+    numberB %= numberA;
+    if (numberB === 0) {
+      return numberA;
+    }
+  }
+}
