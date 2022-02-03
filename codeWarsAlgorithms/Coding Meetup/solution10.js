@@ -1,14 +1,18 @@
 function addUsername(list) {
-  return list1.map((devData) => getUsername(devData));
+  return list.map((devData) => {
+    devData.username = getUsername(devData);
+    return devData;
+  });
 }
 
 function getUsername(devData) {
-  return devData['firstName']
-    .toLowerCase()
-    .concat(devData['lastName'][0].toLowerCase())
-    .concat(getBirthDate(devData['age']).toString());
+  return (
+    devData['firstName'].toLowerCase() +
+    devData['lastName'][0].toLowerCase() +
+    getBirthDate(devData['age']).toString()
+  );
 }
 
 function getBirthDate(age) {
-  return Date.getFullYear() - age;
+  return new Date().getFullYear() - age;
 }
