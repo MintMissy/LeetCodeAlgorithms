@@ -35,7 +35,6 @@ function differentiate(fun) {
     amountResult = '';
   }
 
-  console.log(amountResult);
   return amountResult + 'x' + powerResult;
 }
 
