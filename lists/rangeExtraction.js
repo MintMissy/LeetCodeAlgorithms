@@ -1,64 +1,73 @@
-function solution(list) {
-  let result = '';
-  let sequenceStartItem = 0;
+// function solution(list) {
+//   let result = '';
+//   let sequenceStartItem = 0;
 
-  if (list[1] - list[0] === 1) {
-    sequenceStartItem = list[0];
-  } else {
-    result = `${list[0]}`;
-  }
+//   if (list[1] - list[0] === 1) {
+//     sequenceStartItem = list[0];
+//   } else {
+//     result = `${list[0]}`;
+//   }
 
-  for (let i = 1; i < list.length; i++) {
-    const currentItem = list[i];
-    const previousItem = list[i - 1];
+//   for (let i = 1; i < list.length; i++) {
+//     const currentItem = list[i];
+//     const previousItem = list[i - 1];
 
-    if (currentItem - previousItem === 1) {
-      // If there is a sequence
-      if (i < list.length - 1) {
-        continue;
-      } else {
-        if (currentItem - sequenceStartItem > 1) {
-          result += `,${sequenceStartItem}-${currentItem}`;
-        } else {
-          result += `,${sequenceStartItem},${currentItem}`;
-        }
-      }
-    } else {
-      // If sequence is broken
-      if (previousItem - sequenceStartItem > 1) {
-        // If sequence is longer than 2 items
-        if (result === '') {
-          result += `${sequenceStartItem}-${previousItem}`;
-        } else {
-          result += `,${sequenceStartItem}-${previousItem}`;
-        }
-      } else if (previousItem - sequenceStartItem === 1) {
-        // If sequence is equal to 2 items
-        if (result === '') {
-          result += `${sequenceStartItem}`;
-          result += `,${previousItem}`;
-        } else {
-          result += `,${sequenceStartItem}`;
-          result += `,${previousItem}`;
-        }
-      }
+//     if (currentItem - previousItem === 1) {
+//       // If there is a sequence
+//       if (i < list.length - 1) {
+//         continue;
+//       } else {
+//         if (currentItem - sequenceStartItem > 1) {
+//           result += `,${sequenceStartItem}-${currentItem}`;
+//         } else {
+//           result += `,${sequenceStartItem},${currentItem}`;
+//         }
+//       }
+//     } else {
+//       // If sequence is broken
+//       if (previousItem - sequenceStartItem > 1) {
+//         // If sequence is longer than 2 items
+//         if (result === '') {
+//           result += `${sequenceStartItem}-${previousItem}`;
+//         } else {
+//           result += `,${sequenceStartItem}-${previousItem}`;
+//         }
+//       } else if (previousItem - sequenceStartItem === 1) {
+//         // If sequence is equal to 2 items
+//         if (result === '') {
+//           result += `${sequenceStartItem}`;
+//           result += `,${previousItem}`;
+//         } else {
+//           result += `,${sequenceStartItem}`;
+//           result += `,${previousItem}`;
+//         }
+//       }
 
-      sequenceStartItem = currentItem;
+//       sequenceStartItem = currentItem;
 
-      if (i === list.length - 1) {
-        result += `,${currentItem}`;
-      }
+//       if (i === list.length - 1) {
+//         result += `,${currentItem}`;
+//       }
 
-      if (i + 1 < list.length) {
-        if (list[i + 1] - currentItem !== 1) {
-          result += `,${currentItem}`;
-        }
-      }
-    }
-  }
+//       if (i + 1 < list.length) {
+//         if (list[i + 1] - currentItem !== 1) {
+//           result += `,${currentItem}`;
+//         }
+//       }
+//     }
+//   }
 
-  return result;
-}
+//   return result;
+// }
+
+solution = (list) =>
+  list.reduce((acc, curr, i) => {
+    if (i == 0) return curr.toString();
+    if (list[i - 1] == curr - 1 && list[i + 1] == curr + 1) return acc;
+    if (list[i - 2] == curr - 2 && list[i - 1] == curr - 1)
+      return acc + '-' + curr;
+    return acc + ',' + curr;
+  });
 
 console.log(
   solution([
