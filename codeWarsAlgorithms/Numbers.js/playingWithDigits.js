@@ -13,7 +13,7 @@
 function digPow(n, p) {
   var x = String(n)
     .split('')
-    .reduce((s, d, i) => s + Math.pow(d, p + i), 0);
+    .reduce((sum, digit, index) => sum + Math.pow(digit, p + index), 0);
   return x % n ? -1 : x / n;
 }
 
