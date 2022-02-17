@@ -3,7 +3,7 @@ function pathFinder(maze) {
   console.log(maze);
   let mazeArray = maze.split('\n').map((item) => item.split(''));
 
-  if (move(mazeArray, [0, 0])) {
+  if (move(mazeArray, [mazeArray.length - 1, mazeArray.length - 1])) {
     return true;
   }
 
@@ -21,8 +21,8 @@ function move(mazeArray, position, previousPositions = []) {
   const y = positionCopy[1];
 
   // If get to destination return true
-  if (`${x},${y}` === `${mazeArray.length - 1},${mazeArray.length - 1}`) {
-    console.log('REACHED DESTINATION');
+  if (`${x},${y}` === `${0},${0}`) {
+    console.log('EXIT IS REACHABLE');
     return true;
   }
 
@@ -39,6 +39,22 @@ function move(mazeArray, position, previousPositions = []) {
     previousPositions.push(`${x},${y}`);
   }
 
+  // Move up
+  if (y - 1 >= 0) {
+    console.log('up');
+    if (move(mazeArray, [x, y - 1], [...previousPositions])) {
+      return true;
+    }
+  }
+
+  // Move left
+  if (x - 1 >= 0) {
+    console.log('left');
+    if ((move(mazeArray, [x - 1, y]), [...previousPositions])) {
+      return true;
+    }
+  }
+
   console.log(previousPositions);
   // Move down
   if (y + 1 < mazeArray.length) {
@@ -52,22 +68,6 @@ function move(mazeArray, position, previousPositions = []) {
   if (x + 1 < mazeArray.length) {
     console.log('right');
     if (move(mazeArray, [x + 1, y], [...previousPositions])) {
-      return true;
-    }
-  }
-
-  // Move up
-  if (y - 1 >= 0) {
-    console.log('up');
-    if (move(mazeArray, [x, y - 1], [...previousPositions])) {
-      return true;
-    }
-  }
-
-  // Move left
-  if (x - 1 >= 0) {
-    console.log('left');
-    if ((move(mazeArray, [x - 1, y]), [...previousPositions])) {
       return true;
     }
   }
