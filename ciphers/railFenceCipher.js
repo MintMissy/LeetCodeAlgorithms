@@ -1,3 +1,4 @@
+// NOT WORKING
 function encodeRailFenceCipher(string, numberRails) {
   if (string === '') {
     return '';
@@ -24,6 +25,7 @@ function encodeRailFenceCipher(string, numberRails) {
     }
 
     console.log(`\n`);
+    console.log(i % numberRails);
     console.log(goingDown);
     for (const rail in rails) {
       console.log(rails[rail]);
